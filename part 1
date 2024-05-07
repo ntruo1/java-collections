@@ -1,0 +1,80 @@
+ System.out.println("Fruits in ArrayList: " + arrayList);
+
+        ArrayList<String> newFruits = new ArrayList<>();
+        newFruits.add("grapes");
+        newFruits.add("kiwi");
+        arrayList.addAll(newFruits);
+        System.out.println("ArrayList after adding grapes and kiwi: " + arrayList);
+
+        System.out.println("Number of fruits in the ArrayList: " + arrayList.size());
+        System.out.println("Fruit at index 2: " + arrayList.get(2));
+        System.out.println("Index of banana: " + arrayList.indexOf("banana"));
+    }
+
+    public static void linkedListDemo() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(10);
+        linkedList.add(20);
+        linkedList.add(30);
+
+        System.out.println("Numbers in LinkedList: " + linkedList);
+
+        linkedList.offer(40);
+        System.out.println("LinkedList after offering 40: " + linkedList);
+
+        System.out.println("Size of the LinkedList: " + linkedList.size());
+        System.out.println("First number: " + linkedList.peekFirst());
+        System.out.println("Last number: " + linkedList.peekLast());
+    }
+
+    public static void setDemo() {
+        Set<String> set = new HashSet<>();
+        set.add("red");
+        set.add("blue");
+        set.add("green");
+
+        System.out.println("Colors in Set: " + set);
+
+        set.clear();
+        System.out.println("Set after clearing: " + set);
+
+        System.out.println("Is the set empty? " + set.isEmpty());
+    }
+
+    public static void queueDemo() {
+        Queue<Character> queue = new LinkedList<>();
+        queue.add('A');
+        queue.add('B');
+        queue.add('C');
+
+        System.out.println("Characters in Queue: " + queue);
+
+        char firstChar = queue.poll();
+        System.out.println("Removed character from the front of the queue: " + firstChar);
+
+        System.out.println("Size of the Queue: " + queue.size());
+        System.out.println("First character in the queue: " + queue.peek());
+    }
+
+    public static void mapDemo() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("one", 1);
+        map.put("two", 2);
+        map.put("three", 3);
+
+        System.out.println("Numbers in Map: " + map);
+
+        System.out.println("Is 'two' present in the map? " + map.containsKey("two"));
+
+        System.out.println("Size of the Map: " + map.size());
+        System.out.println("Value associated with key 'three': " + map.get("three"));
+    }
+
+    public static void main(String[] args) {
+        arrayListDemo();
+        linkedListDemo();
+        setDemo();
+        queueDemo();
+        mapDemo();
+    }
+}
