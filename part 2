@@ -1,0 +1,112 @@
+import java.util.*;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+     
+        System.out.print("enter the number of candidates: ");
+        int numCandidates = scanner.nextInt();
+        scanner.nextLine(); 
+
+
+        List<Candidate> candidates = new ArrayList<>();
+
+  
+        for (int i = 1; i <= numCandidates; i++) {
+            System.out.print("enter the name of candidate " + i + ": ");
+            String name = scanner.nextLine();
+            candidates.add(new Candidate(i, name));
+        }
+
+  
+        System.out.println("\ncandidates:");
+        for (Candidate candidate : candidates) {
+            System.out.println(candidate.getId() + ". " + candidate.getName());
+        }
+
+        
+        Map<Integer, Integer> votes = new HashMap<>();
+
+       
+        int vote;
+        do {
+            System.out.print("\nenter the id of the candidate you want to vote for (or enter 0 to stop): ");
+            vote = scanner.nextInt();
+            if (vote != 0) {
+                if (vote > 0 && vote <= numCandidates) {
+                   
+                    int candidateId = candidates.get(vote - 1).getId();
+                    votes.put(candidateId, votes.getOrDefault(candidateId, vote) + 1);
+                    System.out.println("vote registered for candidate " + vote);
+                } else {
+                    System.out.println("invalid candidate id!");
+                }
+            }
+        } while (vote != 0);
+
+        
+        int maxVotes = 0;
+        List<Candidate> winners = new ArrayList<>();
+        for (Candidate candidate : candidates) {
+            int candidateVotes = votes.getOrDefault(candidate.getId(), 0);
+            candidate.incrementVotes();
+            if (candidateVotes > maxVotes) {
+                maxVotes = candidateVotes;
+                winners.clear();
+                winners.add(candidate);
+            } else if (candidateVotes == maxVotes) {
+                winners.add(candidate);
+            }
+        }
+
+       
+        System.out.println("\nWinners:");
+        for (Candidate winner : winners) {
+            System.out.println(winner);
+        }
+
+        scanner.close();
+    }
+}
+import java.util.*;
+import java.util.Arrays;
+
+class Candidate {
+    private int id;
+    private String name;
+    private int votes;
+
+  
+    public Candidate(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.votes = 0;
+    }
+
+ 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    
+    public void incrementVotes() {
+        votes++;
+    }
+
+  
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Name: " + name + ", Votes: " + votes;
+    }
+}
+
